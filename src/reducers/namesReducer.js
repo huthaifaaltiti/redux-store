@@ -1,3 +1,4 @@
+// namesReducer
 const initialState = {
   data: [],
   loading: false,
@@ -27,6 +28,8 @@ const namesReducer = (state = initialState, action) => {
     default:
       return state;
   }
+
+  
 };
 
 export default namesReducer;
