@@ -1,7 +1,9 @@
 import "./App.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
+  const data = useSelector((state) => state.data);
+  console.log(data);
   const dispatch = useDispatch();
 
   dispatch({ type: "FETCH_DATA_REQUEST" });
@@ -11,11 +13,11 @@ function App() {
       const response = await fetch(
         "https://jsonplaceholder.typicode.com/users"
       );
-      
+
       const responseData = await response.json();
 
       dispatch({ type: "FETCH_DATA_SUCCESS", payload: responseData });
-
+      // console.log(responseData);
     } catch (error) {
       dispatch({ type: "FETCH_DATA_FAILURE", payload: error });
     }
@@ -26,9 +28,9 @@ function App() {
       <button onClick={fetchData}>Get Users' Names</button>
 
       <div>
-        {/* {responseData.map((item) => (
-          <div key={item.id}>{item.name}</div>
-        ))} */}
+        {data?.map((item) => (
+          <div key={item?.id}>{item?.name}</div>
+        ))}
       </div>
     </div>
   );
