@@ -2,15 +2,13 @@ import "./App.css";
 // react-redux
 import { useDispatch, useSelector } from "react-redux";
 
-
-
 function App() {
   const data = useSelector((state) => state.data);
 
   // console.log(data);
 
-  // const loading = useSelector((state) => state.loading);
-  // const error = useSelector((state) => state.error);
+  const loading = useSelector((state) => state.loading);
+  const error = useSelector((state) => state.error);
 
   const dispatch = useDispatch();
 
@@ -32,6 +30,9 @@ function App() {
     } catch (error) {
       dispatch({ type: "FETCH_DATA_FAILURE", payload: error.message });
     }
+
+    if (loading) return "Loading ...";
+    if (error) return "Fetching Error!";
   }
 
   return (
