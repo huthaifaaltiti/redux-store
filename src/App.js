@@ -12,11 +12,11 @@ function App() {
 
   const dispatch = useDispatch();
 
-  // API data request
-  dispatch({ type: "FETCH_DATA_REQUEST" });
-
   async function fetchData() {
     try {
+      // API data request
+      dispatch({ type: "FETCH_DATA_REQUEST" });
+
       const response = await fetch(
         // Fake API: https://jsonplaceholder.typicode.com/
         "https://jsonplaceholder.typicode.com/users"
@@ -29,6 +29,7 @@ function App() {
       dispatch({ type: "FETCH_DATA_SUCCESS", payload: responseData });
     } catch (error) {
       dispatch({ type: "FETCH_DATA_FAILURE", payload: error.message });
+      console.log(error);
     }
 
     if (loading) return "Loading ...";
